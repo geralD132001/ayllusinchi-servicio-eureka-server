@@ -2,7 +2,7 @@ node {
    def mvnHome
    
    stage('Preparation') {
-       git 'https://github.com/joseht88/springboot-servicio-eureka-server.git'
+       git 'https://github.com/geralD132001/ayllusinchi-servicio.eureka.-server.git'
        mvnHome = tool 'MAVEN'
    }
    
@@ -26,9 +26,9 @@ node {
    
    stage('Deployment') {
        try {
-			sh 'chown jenkins:jenkins /var/lib/jenkins/workspace/springboot-servicio-eureka-server/runDeployment.sh'
-			sh 'chmod +x /var/lib/jenkins/workspace/springboot-servicio-eureka-server/runDeployment.sh'
-           sh '/var/lib/jenkins/workspace/springboot-servicio-eureka-server/runDeployment.sh'
+			sh 'chown jenkins:jenkins /var/lib/jenkins/workspace/ayllusinchi-servicio.eureka.-server/runDeployment.sh'
+			sh 'chmod +x /var/lib/jenkins/workspace/ayllusinchi-servicio.eureka.-server/runDeployment.sh'
+           sh '/var/lib/jenkins/workspace/ayllusinchi-servicio.eureka.-server/runDeployment.sh'
        }catch (e){
            notifyStarted ("Deployment failed in Jenkins")
            throw e
