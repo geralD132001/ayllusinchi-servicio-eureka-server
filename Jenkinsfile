@@ -1,11 +1,11 @@
 node {
    def mvnHome
-   
+
    stage('Preparation') {
-       git 'https://github.com/joseht88/springboot-servicio-eureka-server.git'
+       git 'https://github.com/geralD132001/ayllusinchi-servicio.eureka.-server.git'
        mvnHome = tool 'MAVEN'
    }
-   
+
    stage('Build') {
        try {
            sh "'${mvnHome}/bin/mvn' clean package -DskipTests"
@@ -14,7 +14,7 @@ node {
            throw e
        }
    }
-   
+
    stage('Results') {
        try {
            archive 'target/*.jar'
@@ -23,18 +23,18 @@ node {
            throw e
        }
    }
-   
+
    stage('Deployment') {
        try {
-			sh 'chown jenkins:jenkins /var/lib/jenkins/workspace/springboot-servicio-eureka-server/runDeployment.sh'
-			sh 'chmod +x /var/lib/jenkins/workspace/springboot-servicio-eureka-server/runDeployment.sh'
-           sh '/var/lib/jenkins/workspace/springboot-servicio-eureka-server/runDeployment.sh'
+			sh 'chown jenkins:jenkins /var/lib/jenkins/workspace/ayllusinchi-servicio.eureka.-server/runDeployment.sh'
+			sh 'chmod +x /var/lib/jenkins/workspace/ayllusinchi-servicio.eureka.-server/runDeployment.sh'
+           sh '/var/lib/jenkins/workspace/ayllusinchi-servicio.eureka.-server/runDeployment.sh'
        }catch (e){
            notifyStarted ("Deployment failed in Jenkins")
            throw e
        }
    }
-   
+
    notifyStarted(" All is well ! Your code is tested, build, and deployed")
 
 }
